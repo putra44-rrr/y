@@ -28,31 +28,17 @@ function change(){
         $uuid = getStr('"resource_owner_id":',',',$verif);
         echo "\n".color("yellow","+] Your access token : ".$token."\n\n");
         save("token.txt",$token);
-        echo "\n".color("nevy","?] Mau Redeem Voucher?: y/n ");
+        echo "\n".color("nevy","?] KAMU MAU NGOPIK?: y/n ");
         $pilihan = trim(fgets(STDIN));
         if($pilihan == "y" || $pilihan == "Y"){
-        echo color("red","===========(REDEEM VOUCHER)===========");
-        echo "\n".color("yellow","!] Claim voc GORIDE 8K");
-        echo "\n".color("yellow","!] Please wait");
-        for($a=1;$a<=3;$a++){
-        echo color("yellow",".");
-        sleep(3);
-        }
-        $code1 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"COBAGORIDEPAY"}');
-        $message = fetch_value($code1,'"message":"','"');
-        if(strpos($code1, 'Promo kamu sudah bisa dipakai')){
-        echo "\n".color("green","+] Message: ".$message);
-        goto gocar;
-        }else{
-        echo "\n".color("red","-] Message: ".$message);
-        gocar:
+        echo color("red","===========(PERSIAPAN NGOPIK)===========");
         echo "\n".color("yellow","!] Claim voc GOFOOD 15+10+5");
-        echo "\n".color("yellow","!] Please wait");
+        echo "\n".color("yellow","!] KALEM YA");
         for($a=1;$a<=3;$a++){
         echo color("yellow",".");
         sleep(20);
         }
-        $code1 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"COBAGOFOOD090320A"}');
+        $code1 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"COBAGOFOOD010420A"}');
         $message = fetch_value($code1,'"message":"','"');
         if(strpos($code1, 'Promo kamu sudah bisa dipakai')){
         echo "\n".color("green","+] Message: ".$message);
@@ -78,10 +64,9 @@ function change(){
         }
         $code1 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"COBAGOCAR14"}');
         $message = fetch_value($code1,'"message":"','"');
-        if(strpos($code1, 'Promo kamu sudah bisa dipakai')){
+        if(strpos($code1, 'PSEMUA SUDAH BERES , LAMJUT KE TB')){
         echo "\n".color("green","+] Message: ".$message);
         sleep(1);
-        sleep(3);
         $cekvoucher = request('/gopoints/v3/wallet/vouchers?limit=10&page=1', $token);
         $total = fetch_value($cekvoucher,'"total_vouchers":',',');
         $voucher3 = getStr1('"title":"','",',$cekvoucher,"3");
